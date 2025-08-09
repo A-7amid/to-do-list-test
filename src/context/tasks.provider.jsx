@@ -19,7 +19,7 @@ const TasksProvider = ({ children }) => {
   const handleSaveTask = (newTask) => {
     tasks.push({ taskName: newTask, id: tasks.length, done: false });
     console.log(tasks);
-    setIsDone(false);
+    // setIsDone(false);
   };
 
   const handleRemoveTask = (index) => {
@@ -27,13 +27,7 @@ const TasksProvider = ({ children }) => {
     console.log("deleted");
   };
 
-  const handleDoneTask = (id) => {
-    tasks.map((task, index) => {
-      index == id ? (task.done = !task.done) : "";
-      console.log("hi");
-      setIsDone(task.done);
-    });
-  };
+  const handleDoneTask = (id) => {};
 
   const values = useMemo(
     () => ({

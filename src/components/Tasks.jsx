@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTasks } from "../context/tasks.provider";
+import clsx from "clsx";
 
 const Tasks = () => {
   const { handleDoneTask, handleRemoveTask, tasks, isDone } = useTasks();
-
-  useEffect(() => {}, [isDone]);
-
   return (
     <div>
       {tasks.map((task, index) => (
@@ -14,35 +12,18 @@ const Tasks = () => {
           className="font-medium py-3 px-4 flex items-center text-md mb-2 bg-zinc-900 border-2 border-zinc-800 rounded-md justify-between"
         >
           <div className="flex gap-x-3 items-center">
-            {/* <input
-              onClick={() => handleDoneTask(index)}
-              type="checkbox"
-              id={index}
-              name={task}
-              value={task}
-              className={`accent-zinc-700 cursor-pointer size-4 rounded-md `}
-              onChange={this.oncha}
-            /> */}
-
             <div>
-              {task.done ? (
-                <div
-                  onClick={() => handleDoneTask(task.id)}
-                  className="flex size-4 cursor-pointer items-center justify-center text-sm  rounded-sm bg-zinc-700 border-2 border-zinc-700"
-                >
-                  ✔
-                </div>
-              ) : (
-                <div
-                  onClick={() => handleDoneTask(task.id)}
-                  className="flex size-4 cursor-pointer rounded-sm bg-transparent border-2 border-zinc-700"
-                ></div>
-              )}
+              <div
+                onClick={() => handleDoneTask(index)}
+                className={clsx(
+                  "flex size-4 cursor-pointer items-center justify-center text-sm  rounded-sm  border-2 border-zinc-700",
+                  { "bg-zinc-700 ": isDone }
+                )}
+              >
+                <span className={clsx({ hidden: !isDone })}>✔</span>
+              </div>
             </div>
 
-            {/* <span className="line-through decoration-zinc-600 decoration-1 font-normal text-zinc-600"> */}
-            {/* {task} */}
-            {/* </span> */}
             <span className="font-normal">{task.taskName}</span>
           </div>
 
